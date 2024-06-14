@@ -1,9 +1,10 @@
 const express = require('express')
-const port = 6060
+const dotenv =require('dotenv').config()
+const port = process.env.port
 const app = express()
 const mongoose = require('mongoose')
 app.use(express.json())
-mongoose.connect('mongodb+srv://hammedlanre71:6n3XfEf6qIWzLuuh@cluster0.l5ipojg.mongodb.net/').then(()=>{
+mongoose.connect(process.env.db).then(()=>{
 console.log('connection successful')
 app.listen(port,()=>{
     console.log(`server runinnig on port ${port}`)
@@ -78,6 +79,7 @@ app.get('/getall',async(req,res)=>{
     res.status(500).json(error.message)
  }
 })
+// test running
 //get all students
 app.get('/getallstudents',async(req,res)=>{
     try {
